@@ -17,7 +17,7 @@ public class MuzzleFlash : MonoBehaviour
         }
     }
 
-    private void PlayMuzzleFlash()
+    public void PlayMuzzleFlash()
     {
         StopAllCoroutines();
         if(activatedMuzzleFlash != null)
@@ -34,15 +34,7 @@ public class MuzzleFlash : MonoBehaviour
         activatedMuzzleFlash.SetActive(false);
         activatedMuzzleFlash = null;
     }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            PlayMuzzleFlash();
-        }
-    }
-
+    
     private void Reset()
     {
         muzzleFlashes = new List<GameObject>();

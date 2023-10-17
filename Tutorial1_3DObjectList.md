@@ -28,7 +28,8 @@ Select the "Content" game object. Add a "Vertical Layout Group" component. Set t
 
 If you try adding a few images to the "Content" game object by right-clicking on the "Content" -> UI -> Image and change its size and color, you should get something like this:
 
-[ScrollViewShowcase1.mp4](Videos%2FScrollViewShowcase1.mp4)
+https://github.com/maximbsb/GunClicker/raw/main/Videos/ScrollViewShowcase1.mp4
+
 ## 2. Next Step
 
 Example of how to make a code area:
