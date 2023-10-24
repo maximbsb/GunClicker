@@ -6,14 +6,14 @@ using Random = UnityEngine.Random;
 
 public class MuzzleFlash : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> muzzleFlashes;
-    private GameObject activatedMuzzleFlash;
+    [SerializeField] private List<Animator> muzzleFlashes;
+    private Animator activatedMuzzleFlash;
     
     private void Start()
     {
         foreach (var muzzleFlash in muzzleFlashes)
         {
-            muzzleFlash.SetActive(false);
+            muzzleFlash.gameObject.SetActive(false);
         }
     }
 
@@ -21,26 +21,27 @@ public class MuzzleFlash : MonoBehaviour
     {
         StopAllCoroutines();
         if(activatedMuzzleFlash != null)
-            activatedMuzzleFlash.SetActive(false);
+            activatedMuzzleFlash.gameObject.SetActive(false);
         
         activatedMuzzleFlash = muzzleFlashes[Random.Range(0, muzzleFlashes.Count)];
-        activatedMuzzleFlash.SetActive(true);
+        activatedMuzzleFlash.gameObject.SetActive(true);
         StartCoroutine(StopMuzzleFlash());
     }
     
     private IEnumerator StopMuzzleFlash()
     {
-        yield return new WaitForSeconds(0.15f);
-        activatedMuzzleFlash.SetActive(false);
+        float waitTime = activatedMuzzleFlash.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(waitTime);
+        activatedMuzzleFlash.gameObject.SetActive(false);
         activatedMuzzleFlash = null;
     }
     
     private void Reset()
     {
-        muzzleFlashes = new List<GameObject>();
+        muzzleFlashes = new List<Animator>();
         foreach (Transform child in transform)
         {
-            muzzleFlashes.Add(child.gameObject);
+            muzzleFlashes.Add(child.GetComponent<Animator>());
         }
     }
 }
