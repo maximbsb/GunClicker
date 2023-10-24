@@ -1,7 +1,7 @@
-# 3D Object List
+# 3D Object Scrollable List
 This shows how to make a scrollable list of 3D objects that spawn when the game begins.
 
-## 1. Setup the Scene
+## 1. Setup the scroll list functionality
 
 Start by creating a new scene called `GameScene`.
 
@@ -28,9 +28,12 @@ Select the "Content" game object. Add a "Vertical Layout Group" component. Set t
 
 If you try adding a few images to the "Content" game object by right-clicking on the "Content" -> UI -> Image and change its size and color, you should get something like this:
 
-https://github.com/maximbsb/GunClicker/raw/main/Videos/ScrollViewShowcase1.mp4
+https://github.com/maximbsb/GunClicker/assets/62714778/67d53540-2f38-4153-986d-aeceb101897b
 
-## 2. Next Step
+
+## 2. Creating list elements in runtime 
+
+
 
 Example of how to make a code area:
 ```.cs
