@@ -2,18 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Shooter : MonoBehaviour
 {
-    [SerializeField] private Gun gun;
+    [FormerlySerializedAs("gun")] [SerializeField] private GunShooter gunShooter;
     [SerializeField] private Currency currency;
     
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            gun.Shoot();
-            currency.AddCurrency(gun.GetStats().damage);
+            gunShooter.Shoot();
+            currency.AddCurrency(gunShooter.GetStats().damage);
         }
     }
 
