@@ -9,10 +9,9 @@ public class GunShooter : MonoBehaviour
     [FormerlySerializedAs("so")] [FormerlySerializedAs("stats")] [SerializeField] private GunSO gun;
     [SerializeField] private MuzzleFlash muzzleFlash;
     private Currency currency;
-    public void Init(GunSO gun, Currency currency)
+    public void Init(GunSO gun)
     {
         this.gun = gun;
-        this.currency = currency;
     }
 
     public GunSO GetStats()

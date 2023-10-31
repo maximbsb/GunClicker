@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 579f996513513d043a571a5bdba50c96, type: 3}
-  m_Name: M1911
+  m_Name: AK74
   m_EditorClassIdentifier: 
-  name: M1911
-  prefab: {fileID: 6988240741655244586, guid: 875d77346d958234186b4602b1513545, type: 3}
-  damage: 1
+  name: AK74
+  prefab: {fileID: 100000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+  damage: 10

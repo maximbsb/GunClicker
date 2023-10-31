@@ -1,31 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GunCell : MonoBehaviour
 {
-    private GunSO gunSO;
-    private GunShooter gunShooter;
-    private Currency currency;
-
+    [Header("References")] 
+    [SerializeField] private TMP_Text gunNameText;
+    [SerializeField] private TMP_Text gunDamageText;
+    [SerializeField] private Transform gunTransform;
+   
     public void Init(GunSO gunSO)
     {
-        this.gunSO = gunSO;
-        gunShooter.Init(gunSO, currency);
-    }
-
-    public void Buy()
-    {
-        if (currency.GetCurrency() >= gunSO.damage)
-        {
-            currency.AddCurrency(-gunSO.damage);
-            gunShooter.Shoot();
-        }
-    }
-
-    private void Reset()
-    {
-        gunShooter = GetComponent<GunShooter>();
-        currency = FindObjectOfType<Currency>();
+        gunNameText.text = gunSO.name;
+        gunDamageText.text = gunSO.damage.ToString("F0");
+        Instantiate(gunSO.prefab, gunTransform);
     }
 }

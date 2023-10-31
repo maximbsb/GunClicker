@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class GunCellSpawner : MonoBehaviour
 {
+    [SerializeField] private GameObject gunCellPrefab;
+    
     [SerializeField] private List<GunSO> guns;
     
     private void Start()
     {
         foreach (var gun in guns)
         {
-            GameObject gunCellGO = Instantiate(gun.prefab, transform);
+            GameObject gunCellGO = Instantiate(gunCellPrefab, transform);
             GunCell gunCell = gunCellGO.GetComponent<GunCell>();
             gunCell.Init(gun);
         }
     }
-       
 }
