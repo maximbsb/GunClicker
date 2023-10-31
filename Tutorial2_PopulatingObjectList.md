@@ -1,5 +1,5 @@
 # Populating Weapon List
-## In this tutorial, we will populate our scrollable list with guns, their names and damage values. To be ready for this tutorial, please download and import a unity package with guns. It can be any package you want. It's recommended that you have at least 2 guns in the pack for this tutorial.
+## In this tutorial, we will populate our scrollable list with guns, their names and damage values. To be ready for this tutorial, please download and import a unity package with guns. It can be any gun pack you want. It's recommended that you have at least 2 guns in the pack for this tutorial.
 
 ## 1. Storing Gun Data
 1. Create a new folder and name it "Scripts".
@@ -20,6 +20,7 @@ This script is not going to inherit from MonoBehaviour, but rather from a Script
 4. Create a new folder called "GunStats". This folder will contain ScriptableObject assets with gun data.
 5. Select the "GunStats" folder and right-click in the empty space, then select Create -> New Gun. Name the newly created asset however you like.
 6. Select the asset and fill in the `name` and `damage` values inside it.
+7. Find one of the gun models that you have in your pack and drag and drop it in the "Prefab" field.
   
 ![GunSOFirstGun](https://github.com/maximbsb/GunClicker/assets/62714778/bb29111b-f743-47df-911a-0d5e8afb93f3)
 
@@ -98,6 +99,8 @@ Now if you delete all the children objects of the "Content" GameObject and start
 
 ![image](https://github.com/maximbsb/GunClicker/assets/62714778/3a3dc0d5-dfda-459f-bf73-417f4599505e)
 
-Now if you create more ScriptableObjects and add them into the "Guns" list in the "GunCellSpawner" script, you should see more guns added into the list once you start the game! 
+Now create more ScriptableObjects and add them into the "Guns" list in the "GunCellSpawner" script. When you start the game once again, you should see more guns are added into your list! 
 
 https://github.com/maximbsb/GunClicker/assets/62714778/fd0f883c-951a-40eb-b38a-d12ea8c9e499
+
+In the next tutorial we will cover shooting guns and adding points that we get per shot.
