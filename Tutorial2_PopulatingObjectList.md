@@ -1,5 +1,5 @@
 # Populating Weapon List
-In this tutorial, we will populate our scrollable list with guns, their names and damage values.
+## In this tutorial, we will populate our scrollable list with guns, their names and damage values. To be ready for this tutorial, please download and import a unity package with guns. It can be any package you want. It's recommended that you have at least 2 guns in the pack for this tutorial.
 
 ## 1. Storing Gun Data
 1. Create a new folder and name it "Scripts".
@@ -25,4 +25,15 @@ This script is not going to inherit from MonoBehaviour, but rather from a Script
 
 Later we will create more ScriptableObject assets for other guns we will add.
 
-## 2. Creating a Cell Prefab
+## 2. Creating a Gun Cell Prefab
+1. Add an image to the "Content" GameObject and name it "GunCell". Change the color of the image to any color you want.
+2. Add a gun as a child object of the "GunCell" GameObject, scale it (by a lot) and place it in the left part of the image. Make sure that it is not behind the UI, otherwise you will not able to see it.
+3. Right-click on the "GunCell" GameObject and select UI->Text-TextMeshPro. Once you press it, you will have a pop up asking to import TMP essentials. Press "Import TMP Essentials" and close the window. You should see a text GameObject was added as a child of "GunCell". Call it "Gun Name".
+4. Change settings of a "Gun Name" GameObject as shown on the screenshot below. Here we change the width, height, PosX and PosY of the "Rect Transform" component to place the text in a good spot. Then we change the text itself to say "Gun Name" we tick a check box called "Auto Size" which will ensure that our text will not escape the text box by reducing in size if our gun name is too long.
+
+![GunNameText](https://github.com/maximbsb/GunClicker/assets/62714778/70cccee5-b65c-4cf5-97e5-22067512c4a5)
+
+6. Add another TMP Text to the "GunCell" GameObject and call it "Gun Damage". Place the text below the gun and change the color of the text to red.
+
+Now your cell should look something like in the screenshot above.
+
