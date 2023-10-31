@@ -59,11 +59,43 @@ public class GunCell : MonoBehaviour
     {
         gunNameText.text = gunSO.name;
         gunDamageText.text = gunSO.damage.ToString("F0");
-        Instantiate(gunSO.prefab, gunTransform.position, gunTransform.rotation, gunTransform);
+        Instantiate(gunSO.prefab, gunTransform);
     }
 ```
 Attach the "GunCell" script to the newly created prefab by selecting the "GunCell" prefab in the "Prefabs" folder, scrolling all the way down in the "Inspector" tab, pressing "Add Component" and searching for the "GunCell" script. Double-click on the "GunCell" prefab and drag "Gun Name" GameObject into the "Gun Name Text" field, "Gun Damage" into "Gun Damage Text" field and "Gun Transform" into the "Gun Transform" field.
 ![GunCellPrefab](https://github.com/maximbsb/GunClicker/assets/62714778/837797a7-da20-4c7f-ad50-c0992be97ddf)
 
 Press this button to return to the "Scene" view:
+
 ![image](https://github.com/maximbsb/GunClicker/assets/62714778/23b83117-9b4e-4fe8-be0c-245bb2e0b70b)
+
+## 4. Creating a Gun Cell Spawner Script
+This script will spawn our "GunCell" prefab into the scrollable list when the game begins.
+
+```.cs
+public class GunCellSpawner : MonoBehaviour
+{
+    [SerializeField] private GameObject gunCellPrefab;
+    [SerializeField] private List<GunSO> guns;
+    
+    private void Start()
+    {
+        foreach (var gun in guns)
+        {
+            GameObject gunCellGO = Instantiate(gunCellPrefab, transform);
+            GunCell gunCell = gunCellGO.GetComponent<GunCell>();
+            gunCell.Init(gun);
+        }
+    }
+}
+```
+In the Start function, we iterate over all the Gun ScriptableObjects inside the list which we will manually populate with gun ScriptableObjects. For every gun, we create a "GunCell" prefab as a child of a GameObject that has this script. Then we will get a "GunCell" script and call Init function in the "GunCell" script which will change the text and spawn a correct gun into the cell.
+
+Attach this script to the "Content" GameObject. Drag the "GunCell" prefab from the "Prefabs" folder into the "Gun Cell Prefab" field of the GunCellSpawner.
+Add a new element by clicking a plus icon below the list called "Guns". Then drag and drop a gun ScriptableObject that we created in the "GunStats" folder.
+
+Now if you delete all the children objects of the "Content" GameObject and start the game, you should see that our text has been set to the data set in the gun ScripableObject and a gun is spawned where it should in the gun cell!
+
+![image](https://github.com/maximbsb/GunClicker/assets/62714778/3a3dc0d5-dfda-459f-bf73-417f4599505e)
+
+Now if you create more ScriptableObjects and add them into the "Guns" list in the "GunCellSpawner" script, you should see more guns added into the list once you start the game! 
