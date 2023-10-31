@@ -37,3 +37,33 @@ Later we will create more ScriptableObject assets for other guns we will add.
 
 Now your cell should look something like in the screenshot above.
 
+7. Copy the "Transform" Component of the gun by right-clicking on the "Transform" component  of the gun Copy -> Component.
+8. Right-click on the "GunCell" GameObject and select "Create empty". Name it "Gun Transform".
+9. Select the "Gun Transform" and copy the position, rotation and scale values of the gun GameObject over to it. This will save the gun's position, rotation and scale for the time when we spawn it into the scene via code.
+10. Delete the gun by selecting it and pressing "Delete" key.
+11. Create a new folder and name it "Prefabs".
+12. Drag the "GunCell" into the "Prefabs" folder. This will create a prefab of the GameObject. By making it a prefab, we can spawn it into the scene multiple times via code, instead of spawning each child of "GunCell" manually and tweaking values of every component. 
+
+## 3. Creating a Gun Cell Script
+The purpose of the "GunCell" script is to assign text values of the gun name and damage and to spawn a correct gun model according to a passed in gun ScriptableObject.
+
+```.cs
+public class GunCell : MonoBehaviour
+{
+    [Header("References")] 
+    [SerializeField] private TMP_Text gunNameText;
+    [SerializeField] private TMP_Text gunDamageText;
+    [SerializeField] private Transform gunTransform;
+   
+    public void Init(GunSO gunSO)
+    {
+        gunNameText.text = gunSO.name;
+        gunDamageText.text = gunSO.damage.ToString("F0");
+        Instantiate(gunSO.prefab, gunTransform.position, gunTransform.rotation, gunTransform);
+    }
+```
+Attach the "GunCell" script to the newly created prefab by selecting the "GunCell" prefab in the "Prefabs" folder, scrolling all the way down in the "Inspector" tab, pressing "Add Component" and searching for the "GunCell" script. Double-click on the "GunCell" prefab and drag "Gun Name" GameObject into the "Gun Name Text" field, "Gun Damage" into "Gun Damage Text" field and "Gun Transform" into the "Gun Transform" field.
+![GunCellPrefab](https://github.com/maximbsb/GunClicker/assets/62714778/837797a7-da20-4c7f-ad50-c0992be97ddf)
+
+Press this button to return to the "Scene" view:
+![image](https://github.com/maximbsb/GunClicker/assets/62714778/23b83117-9b4e-4fe8-be0c-245bb2e0b70b)
