@@ -99,3 +99,5 @@ Now if you delete all the children objects of the "Content" GameObject and start
 ![image](https://github.com/maximbsb/GunClicker/assets/62714778/3a3dc0d5-dfda-459f-bf73-417f4599505e)
 
 Now if you create more ScriptableObjects and add them into the "Guns" list in the "GunCellSpawner" script, you should see more guns added into the list once you start the game! 
+
+https://github.com/maximbsb/GunClicker/assets/62714778/fd0f883c-951a-40eb-b38a-d12ea8c9e499
