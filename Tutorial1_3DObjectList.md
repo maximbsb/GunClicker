@@ -1,5 +1,5 @@
 # 3D Object Scrollable List
-## This tutorial shows how to make a scrollable list that contains both 2D and 3D objects
+## This tutorial shows how to make a scrollable list that contains both 2D and 3D objects. The scrollable list will store various weapons that players will be able to tap to shoot them. Each gun will give different amount of points. As players acquire points, they can unlock new guns or upgrade existing guns with earned points. Along with guns, each list element will display a gun's name, it's damage (points that it gives per shot) and a target object that will be shot at.
 
 1. Create a new folder in your project by right-clicking on the "Assets" folder in the "Project" tab. In the popped-up window click Create -> Folder. Click twice slowly on the the new folder or select it and press "F2". This will let you rename the folder. Name it "Scenes".
 1. Create a new scene in the "Scenes" folder by right-clicking on it, then Create -> Scene. Name it `GameScene`.
