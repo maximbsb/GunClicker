@@ -156,3 +156,7 @@ public class GunCellSpawner : MonoBehaviour
 }
 ```
 Here we add a new `currency` variable that we will set in the inspector. The reason why we didn't make `currency` be available in the editor for the `GunCell` and `GunShooter` is because we are spawning these gameobjects in runtime, which means that we couldn't assign a value for `currency` (We cannot assign an object in the scene to a field in a prefab of a `GunCell` or other gun prefabs).
+
+Now that the code is done, add the `GunShooter` script on all the gun prefabs that you have. Don't forget to assign a value to a 'currency' field in the `GunCellSpawner` script that is on the `Container` gameobject! Right now, if you start the game and click on the weapons, nothing is going to happen. This is because our guns are missing a collider that is used for the detection of a mouse click. Add a box collider to a prefab of every gun that you have. 
+
+Now if you play the game and click on any gun, you should see your points increased depending on the damage of a weapon.
