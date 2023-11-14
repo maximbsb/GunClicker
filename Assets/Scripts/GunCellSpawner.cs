@@ -5,8 +5,8 @@ using UnityEngine;
 public class GunCellSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject gunCellPrefab;
-    
     [SerializeField] private List<GunSO> guns;
+    [SerializeField] private Currency currency;
     
     private void Start()
     {
@@ -14,7 +14,7 @@ public class GunCellSpawner : MonoBehaviour
         {
             GameObject gunCellGO = Instantiate(gunCellPrefab, transform);
             GunCell gunCell = gunCellGO.GetComponent<GunCell>();
-            gunCell.Init(gun);
+            gunCell.Init(gun,currency);
         }
     }
 }

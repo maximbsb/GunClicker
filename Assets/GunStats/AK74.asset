@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AK74
   m_EditorClassIdentifier: 
   name: AK74
-  prefab: {fileID: 100000, guid: 6f966b9a7c817ed49973b4a8762cbbdf, type: 3}
+  prefab: {fileID: 1918184963374419401, guid: d9635dae8cba254418cbe6a3b974d063, type: 3}
   damage: 10

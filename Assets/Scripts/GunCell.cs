@@ -10,11 +10,19 @@ public class GunCell : MonoBehaviour
     [SerializeField] private TMP_Text gunNameText;
     [SerializeField] private TMP_Text gunDamageText;
     [SerializeField] private Transform gunTransform;
-   
-    public void Init(GunSO gunSO)
+    public void Init(GunSO gunSO, Currency currency)
     {
         gunNameText.text = gunSO.name;
         gunDamageText.text = gunSO.damage.ToString("F0");
-        Instantiate(gunSO.prefab, gunTransform);
+        
+        GameObject gunGO = Instantiate(gunSO.prefab, gunTransform);
+        if (gunGO.TryGetComponent(out GunShooter gunShooter))
+        {
+            gunShooter.Init(gunSO, currency);
+        }
+        else
+        {
+            Debug.LogError("Gun prefab does not have GunShooter component");
+        }
     }
 }

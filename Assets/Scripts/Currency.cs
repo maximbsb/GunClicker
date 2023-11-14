@@ -13,6 +13,7 @@ public class Currency : MonoBehaviour
     {
         return currency;
     }
+    
     public void AddCurrency(float amount)
     {
         if(amount < 0)

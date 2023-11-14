@@ -6,12 +6,14 @@ using UnityEngine.Serialization;
 
 public class GunShooter : MonoBehaviour
 {
-    [FormerlySerializedAs("so")] [FormerlySerializedAs("stats")] [SerializeField] private GunSO gun;
-    [SerializeField] private MuzzleFlash muzzleFlash;
+    private GunSO gun;
     private Currency currency;
-    public void Init(GunSO gun)
+    [SerializeField] private MuzzleFlash muzzleFlash;
+    
+    public void Init(GunSO gun, Currency currency)
     {
         this.gun = gun;
+        this.currency = currency;
     }
 
     public GunSO GetStats()
@@ -21,12 +23,12 @@ public class GunShooter : MonoBehaviour
     public void Shoot()
     {
         muzzleFlash.PlayMuzzleFlash();
+        currency.AddCurrency(gun.damage);
     }
 
     private void OnMouseDown()
     {
         Shoot();
-        currency.AddCurrency(gun.damage);
     }
 
     private void Reset()
