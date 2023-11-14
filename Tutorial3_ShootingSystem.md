@@ -70,7 +70,7 @@ public class CurrencyDisplay : MonoBehaviour
 }    
 ```
 Explanation: 
-On 'Start' we subscribe the function called 'UpdateText' to the 'OnCurrencyChanged' event in the 'Currency' class. This means that everytime that we invoke this event, 'UpdateText" will be called and the text will be updated. We could update our text in the 'Update' callback function, however, that would mean that we would do unnecessary computations every frame, even though we aren't doing anything to the text. Using events allows know exactly when the currency text should be updated and saves us some frame time.
+On 'Start' we subscribe the function called 'UpdateText' to the 'OnCurrencyChanged' event in the 'Currency' class. This means that everytime that we invoke this event, 'UpdateText" will be called and the text will be updated. We could update our text in the 'Update' callback function, however, that would mean that we would do unnecessary computations every frame, even though we aren't doing anything to the text. Using events allows us to know exactly when the currency text should be updated and gives us some additional performance.
 In the 'UpdateText' function, we call a 'GetCurrency' function which acts as the getter for our private 'currency' variable and then we call 'ToString' with an "F0" attribute inside it, which converts our float value to string and makes it have 0 decimal places. If we would put "F1", our string would have 1 decimal place.
 The 'Reset' function is called when we first attach a script to a gameobject. This means that it will try to find an object with a 'Currency' component and put it in its 'currency' variable and it will get a text component if it's present on this gameobject. This speeds up the workflow since we don't have to manually drag the components to their variable fields.
 
@@ -79,58 +79,70 @@ The 'Reset' function is called when we first attach a script to a gameobject. Th
 8. Go to the 'Currency' gameobject and change the value of the 'currency' field to any other number you want. I will set mine to 369.
    ![image](https://github.com/maximbsb/GunClicker/assets/62714778/dec33249-6cd9-4010-b250-6b3669958f33)
 As you can see, now our currency text updates with our 'currency' field. However, if you change the value of the 'currency' field in runtime, you will see that the text will not change! This is because we only update our currency text when the 'OnChangeCurrency' event is invoked! Later on in the tutorial, you will see that when we call our 'AddCurrency' and 'SpendCurrency' functions, the text will update when necessary.
-## 2. Creating a Gun Cell Prefab
-1. Add an image to the "Content" GameObject and name it "GunCell". Change the color of the image to any color you want.
-2. Add a gun as a child object of the "GunCell" GameObject, scale it (by a lot) and place it in the left part of the image. Make sure that it is not behind the UI, otherwise you will not able to see it.
-3. Right-click on the "GunCell" GameObject and select UI->Text-TextMeshPro. Once you press it, you will have a pop up asking to import TMP essentials. Press "Import TMP Essentials" and close the window. You should see a text GameObject was added as a child of "GunCell". Call it "Gun Name".
-4. Change settings of a "Gun Name" GameObject as shown on the screenshot below. Here we change the width, height, PosX and PosY of the "Rect Transform" component to place the text in a good spot. Then we change the text itself to say "Gun Name" we tick a check box called "Auto Size" which will ensure that our text will not escape the text box by reducing in size if our gun name is too long.
 
-![GunNameText](https://github.com/maximbsb/GunClicker/assets/62714778/70cccee5-b65c-4cf5-97e5-22067512c4a5)
-
-6. Add another TMP Text to the "GunCell" GameObject and call it "Gun Damage". Place the text below the gun and change the color of the text to red.
-
-Now your cell should look something like in the screenshot above.
-
-7. Copy the "Transform" Component of the gun by right-clicking on the "Transform" component  of the gun Copy -> Component.
-8. Right-click on the "GunCell" GameObject and select "Create empty". Name it "Gun Transform".
-9. Select the "Gun Transform" and copy the position, rotation and scale values of the gun GameObject over to it. This will save the gun's position, rotation and scale for the time when we spawn it into the scene via code.
-10. Delete the gun by selecting it and pressing "Delete" key.
-11. Create a new folder and name it "Prefabs".
-12. Drag the "GunCell" into the "Prefabs" folder. This will create a prefab of the GameObject. By making it a prefab, we can spawn it into the scene multiple times via code, instead of spawning each child of "GunCell" manually and tweaking values of every component. 
-
-## 3. Creating a Gun Cell Script
-The purpose of the "GunCell" script is to assign text values of the gun name and damage and to spawn a correct gun model according to a passed in gun ScriptableObject.
+## 2. Adding score when pressing on a gun
+1. Create a new script in the "Scripts" folder and name it 'GunShooter'
 
 ```.cs
-public class GunCell : MonoBehaviour
+public class GunShooter : MonoBehaviour
 {
-    [Header("References")] 
-    [SerializeField] private TMP_Text gunNameText;
-    [SerializeField] private TMP_Text gunDamageText;
-    [SerializeField] private Transform gunTransform;
-   
-    public void Init(GunSO gunSO)
+    private GunSO gun;
+    private Currency currency;
+    
+    public void Init(GunSO gun, Currency currency)
+    {
+        this.gun = gun;
+        this.currency = currency;
+    }
+
+    public GunSO GetStats()
+    {
+        return gun;
+    }
+
+    public void Shoot()
+    {
+        currency.AddCurrency(gun.damage);
+    }
+
+    private void OnMouseDown()
+    {
+        Shoot();
+    }
+}
+```
+Explanation:
+The GunShooter script will be added onto each individual gun. We added a callback function called `OnMouseDown` which gets called when we click on a collider of a gun with a mouse button or a finger. Once we call it, a `Shoot()` function will be called, where we add points to the `currency` value based on the damage of the gun that we set in the GunSO.
+As you can see, the variables in this script are private and do not have a `[SerializeField]` attribute, which means that we can't assign them values in the inspector. In order to give these variables a value, I made an `Init` function which will be called from the class that spawns our gun, which is `GunCell`. We could get the values by using `FindObjectOfType` for the currency and add a `[SerializeField]` to the gun variable, however, it is more efficient to pass it down from the spawner class and saves us some time assigning GunSOs for every gun prefab. 
+
+2. Open you `GunCell` script and modify the `Init` function:
+   ```.cs
+public void Init(GunSO gunSO, Currency currency)
     {
         gunNameText.text = gunSO.name;
         gunDamageText.text = gunSO.damage.ToString("F0");
-        Instantiate(gunSO.prefab, gunTransform);
+        
+        GameObject gunGO = Instantiate(gunSO.prefab, gunTransform);
+        if (gunGO.TryGetComponent(out GunShooter gunShooter))
+        {
+            gunShooter.Init(gunSO, currency);
+        }
+        else
+        {
+            Debug.LogError("Gun prefab does not have GunShooter component");
+        }
     }
-```
-Attach the "GunCell" script to the newly created prefab by selecting the "GunCell" prefab in the "Prefabs" folder, scrolling all the way down in the "Inspector" tab, pressing "Add Component" and searching for the "GunCell" script. Double-click on the "GunCell" prefab and drag "Gun Name" GameObject into the "Gun Name Text" field, "Gun Damage" into "Gun Damage Text" field and "Gun Transform" into the "Gun Transform" field.
-![GunCellPrefab](https://github.com/maximbsb/GunClicker/assets/62714778/837797a7-da20-4c7f-ad50-c0992be97ddf)
+   ```
+As you can see, we added a new attribute of type `Currency`. We also save an instantiated gameobject into a variable called `gunGO`. After that, we check that this gameobject has a `GunShooter` component attached to it. If it does, we call the `Init` function to fill in all the variables if it doesn't, we give an error.
 
-Press this button to return to the "Scene" view:
-
-![image](https://github.com/maximbsb/GunClicker/assets/62714778/23b83117-9b4e-4fe8-be0c-245bb2e0b70b)
-
-## 4. Creating a Gun Cell Spawner Script
-This script will spawn our "GunCell" prefab into the scrollable list when the game begins.
+Now we have to modify the `GunCellSpawner` to have a pass the `currency` into the `Init` function:
 
 ```.cs
 public class GunCellSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject gunCellPrefab;
     [SerializeField] private List<GunSO> guns;
+    [SerializeField] private Currency currency;
     
     private void Start()
     {
@@ -138,22 +150,9 @@ public class GunCellSpawner : MonoBehaviour
         {
             GameObject gunCellGO = Instantiate(gunCellPrefab, transform);
             GunCell gunCell = gunCellGO.GetComponent<GunCell>();
-            gunCell.Init(gun);
+            gunCell.Init(gun,currency);
         }
     }
 }
 ```
-In the Start function, we iterate over all the Gun ScriptableObjects inside the list which we will manually populate with gun ScriptableObjects. For every gun, we create a "GunCell" prefab as a child of a GameObject that has this script. Then we will get a "GunCell" script and call Init function in the "GunCell" script which will change the text and spawn a correct gun into the cell.
-
-Attach this script to the "Content" GameObject. Drag the "GunCell" prefab from the "Prefabs" folder into the "Gun Cell Prefab" field of the GunCellSpawner.
-Add a new element by clicking a plus icon below the list called "Guns". Then drag and drop a gun ScriptableObject that we created in the "GunStats" folder.
-
-Now if you delete all the children objects of the "Content" GameObject and start the game, you should see that our text has been set to the data set in the gun ScripableObject and a gun is spawned where it should in the gun cell!
-
-![image](https://github.com/maximbsb/GunClicker/assets/62714778/3a3dc0d5-dfda-459f-bf73-417f4599505e)
-
-Now create more ScriptableObjects and add them into the "Guns" list in the "GunCellSpawner" script. When you start the game once again, you should see more guns are added into your list! 
-
-https://github.com/maximbsb/GunClicker/assets/62714778/fd0f883c-951a-40eb-b38a-d12ea8c9e499
-
-In the next tutorial we will cover shooting guns and adding points that we get per shot.
+Here we add a new `currency` variable that we will set in the inspector. The reason why we didn't make `currency` be available in the editor for the `GunCell` and `GunShooter` is because we are spawning these gameobjects in runtime, which means that we couldn't assign a value for `currency` (We cannot assign an object in the scene to a field in a prefab of a `GunCell` or other gun prefabs).
