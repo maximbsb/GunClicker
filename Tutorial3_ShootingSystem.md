@@ -162,4 +162,4 @@ Now that the code is done, add the `GunShooter` script on all the gun prefabs th
 
 Now if you play the game and click on any gun, you should see your points increased depending on the damage of a weapon.
 
-https://github.com/maximbsb/GunClicker/assets/62714778/37be895d-6b86-4841-8556-f292a483cf2a
+https://github.com/maximbsb/GunClicker/assets/62714778/665b990c-5dc5-4d5b-a214-a17921e8cc66
