@@ -116,7 +116,8 @@ The GunShooter script will be added onto each individual gun. We added a callbac
 As you can see, the variables in this script are private and do not have a `[SerializeField]` attribute, which means that we can't assign them values in the inspector. In order to give these variables a value, I made an `Init` function which will be called from the class that spawns our gun, which is `GunCell`. We could get the values by using `FindObjectOfType` for the currency and add a `[SerializeField]` to the gun variable, however, it is more efficient to pass it down from the spawner class and saves us some time assigning GunSOs for every gun prefab. 
 
 2. Open you `GunCell` script and modify the `Init` function:
-   ```.cs
+
+```.cs
 public void Init(GunSO gunSO, Currency currency)
     {
         gunNameText.text = gunSO.name;
@@ -160,3 +161,5 @@ Here we add a new `currency` variable that we will set in the inspector. The rea
 Now that the code is done, add the `GunShooter` script on all the gun prefabs that you have. Don't forget to assign a value to a 'currency' field in the `GunCellSpawner` script that is on the `Container` gameobject! Right now, if you start the game and click on the weapons, nothing is going to happen. This is because our guns are missing a collider that is used for the detection of a mouse click. Add a box collider to a prefab of every gun that you have. 
 
 Now if you play the game and click on any gun, you should see your points increased depending on the damage of a weapon.
+
+https://github.com/maximbsb/GunClicker/assets/62714778/37be895d-6b86-4841-8556-f292a483cf2a
