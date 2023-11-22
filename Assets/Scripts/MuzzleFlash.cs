@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class MuzzleFlash : MonoBehaviour
 {
+    [SerializeField] private float startSize = 0.02f;
+    
     [SerializeField] private List<Animator> muzzleFlashes;
     private Animator activatedMuzzleFlash;
     
@@ -26,6 +28,7 @@ public class MuzzleFlash : MonoBehaviour
         activatedMuzzleFlash = muzzleFlashes[Random.Range(0, muzzleFlashes.Count)];
         activatedMuzzleFlash.gameObject.SetActive(true);
         StartCoroutine(StopMuzzleFlash());
+        StartCoroutine(ChangeSize());
     }
     
     private IEnumerator StopMuzzleFlash()
@@ -42,6 +45,18 @@ public class MuzzleFlash : MonoBehaviour
         foreach (Transform child in transform)
         {
             muzzleFlashes.Add(child.GetComponent<Animator>());
+        }
+    }
+    
+    private IEnumerator ChangeSize()
+    {
+        float waitTime = activatedMuzzleFlash.GetCurrentAnimatorStateInfo(0).length;
+        float t = 0;
+        while (t < waitTime)
+        {
+            t += Time.deltaTime;
+            transform.localScale = Vector3.Lerp(Vector3.one * startSize, Vector3.zero, t / waitTime);
+            yield return null;
         }
     }
 }

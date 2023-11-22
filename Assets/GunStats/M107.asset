@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: M107
   m_EditorClassIdentifier: 
   name: M107
-  prefab: {fileID: 100002, guid: a0e70037533056249a1bcaf8b480c5cb, type: 3}
+  prefab: {fileID: 2623056346545752633, guid: 3cc621e01b9032f458ee04667df62fa9, type: 3}
   damage: 100

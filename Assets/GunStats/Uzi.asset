@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Uzi
   m_EditorClassIdentifier: 
   name: Uzi
-  prefab: {fileID: 100010, guid: ff8c9f278b5bc8e4c894e1122f4a81f3, type: 3}
+  prefab: {fileID: 2546482444622790341, guid: 8705c47c670e24c4bae1c8b714b73937, type: 3}
   damage: 1000
