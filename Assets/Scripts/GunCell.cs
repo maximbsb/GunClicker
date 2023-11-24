@@ -10,6 +10,8 @@ public class GunCell : MonoBehaviour
     [SerializeField] private TMP_Text gunNameText;
     [SerializeField] private TMP_Text gunDamageText;
     [SerializeField] private Transform gunTransform;
+    [SerializeField] private ShootingTarget shootingTarget;
+    
     public void Init(GunSO gunSO, Currency currency)
     {
         gunNameText.text = gunSO.name;
@@ -19,6 +21,7 @@ public class GunCell : MonoBehaviour
         if (gunGO.TryGetComponent(out GunShooter gunShooter))
         {
             gunShooter.Init(gunSO, currency);
+            gunShooter.OnShoot += shootingTarget.Hit;
         }
         else
         {

@@ -10,6 +10,7 @@ public class GunShooter : MonoBehaviour
     private Currency currency;
     [SerializeField] private MuzzleFlash muzzleFlash;
     [SerializeField] private Animator animator;
+    public event Action<float> OnShoot;
     
     
     public void Init(GunSO gun, Currency currency)
@@ -24,12 +25,15 @@ public class GunShooter : MonoBehaviour
     }
     public void Shoot()
     {
+        OnShoot?.Invoke(gun.damage);
         currency.AddCurrency(gun.damage);
         animator.PlayInFixedTime("Shoot", 0, 0);
+        
         if(muzzleFlash != null)
             muzzleFlash.PlayMuzzleFlash();
         else
             Debug.LogError("MuzzleFlash is null");
+        
     }
 
     private void OnMouseDown()
