@@ -51,7 +51,7 @@ public class ShootingTarget : MonoBehaviour
     
     private GameObject CreatePooledItem(GameObject prefab)
     {
-        GameObject pooledItem = Instantiate(prefab, transform.position, Quaternion.identity);
+        GameObject pooledItem = Instantiate(prefab, transform.position, Quaternion.identity, transform.parent);
         return pooledItem;
     }
     

@@ -9,4 +9,5 @@ public class GunSO : ScriptableObject
     public GameObject prefab;
     public float damage;
     public float scale = 750;
+    public float fireRate = 0.5f;
 }
