@@ -16,7 +16,7 @@ public class GunCell : MonoBehaviour
     {
         gunNameText.text = gunSO.name;
         gunDamageText.text = gunSO.damage.ToString("F0");
-        
+        gunTransform.localScale = gunSO.scale * Vector3.one;
         GameObject gunGO = Instantiate(gunSO.prefab, gunTransform);
         if (gunGO.TryGetComponent(out GunShooter gunShooter))
         {

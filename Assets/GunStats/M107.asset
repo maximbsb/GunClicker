@@ -15,3 +15,4 @@ MonoBehaviour:
   name: M107
   prefab: {fileID: 2623056346545752633, guid: 3cc621e01b9032f458ee04667df62fa9, type: 3}
   damage: 100
+  scale: 600

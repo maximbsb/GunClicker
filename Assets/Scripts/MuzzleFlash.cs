@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,6 +10,8 @@ public class MuzzleFlash : MonoBehaviour
     [SerializeField] private float startSize = 0.02f;
     
     [SerializeField] private List<Animator> muzzleFlashes;
+    [SerializeField] private MuzzleLightScaler muzzleLightScaler;
+    
     private Animator activatedMuzzleFlash;
     
     private void Start()
@@ -29,12 +32,15 @@ public class MuzzleFlash : MonoBehaviour
         activatedMuzzleFlash.gameObject.SetActive(true);
         StartCoroutine(StopMuzzleFlash());
         StartCoroutine(ChangeSize());
+        muzzleLightScaler.ChangeSize(activatedMuzzleFlash.GetCurrentAnimatorStateInfo(0).length);
     }
     
     private IEnumerator StopMuzzleFlash()
     {
         float waitTime = activatedMuzzleFlash.GetCurrentAnimatorStateInfo(0).length;
+
         yield return new WaitForSeconds(waitTime);
+        
         activatedMuzzleFlash.gameObject.SetActive(false);
         activatedMuzzleFlash = null;
     }
