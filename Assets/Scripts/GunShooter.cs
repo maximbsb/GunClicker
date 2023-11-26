@@ -63,7 +63,7 @@ public class GunShooter : MonoBehaviour
         }
 
     }
-
+    
     private void Reset()
     {
         animator = GetComponentInChildren<Animator>();

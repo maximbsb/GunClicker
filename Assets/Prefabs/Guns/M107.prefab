@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 2623056346546050585}
   - component: {fileID: 3369526785201278429}
   - component: {fileID: 6157360287729008966}
+  - component: {fileID: 2930819227036472111}
   m_Layer: 0
   m_Name: M107
   m_TagString: Untagged
@@ -171,6 +172,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.044446826, y: 0.2076416, z: 1.2352383}
   m_Center: {x: 0, y: -0.038074195, z: -0.08104658}
+--- !u!114 &2930819227036472111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2623056346545752633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001b707037db1d14592bdabb12272a34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 2026842007655208168}
+  - {fileID: 2623056346543756539}
+  - {fileID: 2623056346543756543}
+  - {fileID: 2623056346543756541}
+  lockedMaterial: {fileID: 2100000, guid: 425b4bd562b9a4c4bb1f020d4c81096b, type: 2}
+  unlockedMaterial: {fileID: 2100000, guid: 28f0b13c7e9707746b5e0b3336181560, type: 2}
 --- !u!1 &2623056346545752635
 GameObject:
   m_ObjectHideFlags: 0

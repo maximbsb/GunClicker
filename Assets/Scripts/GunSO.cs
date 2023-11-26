@@ -7,7 +7,9 @@ public class GunSO : ScriptableObject
 {
     public string name;
     public GameObject prefab;
-    public float damage;
     public float scale = 750;
+    public float damage;
     public float fireRate = 0.5f;
+    public bool isUnlocked;
+    public int price;
 }

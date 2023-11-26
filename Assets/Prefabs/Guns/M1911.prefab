@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 6984144591073939262}
   - component: {fileID: 9146641896944468233}
   - component: {fileID: 1108122117}
+  - component: {fileID: 744077868835373320}
   m_Layer: 0
   m_Name: M1911
   m_TagString: Untagged
@@ -477,6 +478,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.18, z: 0.25}
   m_Center: {x: 0, y: -0.02, z: -0.03}
+--- !u!114 &744077868835373320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6988240741655244586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001b707037db1d14592bdabb12272a34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 6965169584439234948}
+  - {fileID: 6965230007740471304}
+  - {fileID: 6966706398800356326}
+  - {fileID: 6965100652225149528}
+  - {fileID: 6965189249656423108}
+  lockedMaterial: {fileID: 2100000, guid: 425b4bd562b9a4c4bb1f020d4c81096b, type: 2}
+  unlockedMaterial: {fileID: 2100000, guid: 28f0b13c7e9707746b5e0b3336181560, type: 2}
 --- !u!1 &6988310787286754484
 GameObject:
   m_ObjectHideFlags: 0

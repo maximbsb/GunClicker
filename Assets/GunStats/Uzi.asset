@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Uzi
   prefab: {fileID: 2546482444622790341, guid: 8705c47c670e24c4bae1c8b714b73937, type: 3}
-  damage: 1000
   scale: 850
+  damage: 1000
   fireRate: 0.1
+  isUnlocked: 1
+  price: 1000
