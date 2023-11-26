@@ -14,7 +14,6 @@ public class GunShooter : MonoBehaviour
     private float timeSinceLastShot = 0;
     private bool isHolding;
 
-
     public void Init(GunSO gun, Currency currency)
     {
         this.gun = gun;

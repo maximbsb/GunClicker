@@ -16,4 +16,4 @@ MonoBehaviour:
   prefab: {fileID: 1918184963374419401, guid: d9635dae8cba254418cbe6a3b974d063, type: 3}
   damage: 10
   scale: 750
-  fireRate: 0.2
+  fireRate: 0.15
