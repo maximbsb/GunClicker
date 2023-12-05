@@ -74,19 +74,35 @@ When our bullet hits the target, `OnHit` function is called. We call `bulletImpa
 
 The bullet impact then has to be put back into the pool. That's why the `ReleasePoolItemWithDelay` async function is called. In that function we call `pool.Release(item)`, which puts the object back in the pool and disables it after a certain number of miliseconds.
 
-## Implementation of the pooling system
+## 2. Implementation of the pooling system
 1. Save the code explained above into a new script `PoolingSystem`
 2. Create a new object that would represent the target that we will be shooting at (where the damage particles will be spawned). Call it `Target`
 3. Attach the `PoolingSystem` onto the `Target` game object
-4. Go into the `GunCell` script, locate the `Init` function and add this line to it:
+4. Go into the `GunCell` script and add a new variable of type `PoolingSystem`:
    ```.cs
-    
+   ...
+    [SerializeField] private PoolingSystem shootingTarget;
    ```
+5. Add a new line inside the if statement:
+   ```.cs
+    public void Init(GunSO gunSO, Currency currency)
+    {
+        gunNameText.text = gunSO.name;
+        GameObject gunGO = Instantiate(gunSO.prefab, gunTransform);
+        if (gunGO.TryGetComponent(out GunShooter gunShooter))
+        {
+            gunShooter.Init(gunSO, currency);
+            gunShooter.OnShoot += shootingTarget.Hit; // added line
+        }
+   ```
+This will call a `OnHit` function inside the pulling system which will spawn a particle when we invoke an `OnShoot` event.
 
-As you can see, particles appear when we shoot the gun:
+6. Assign the `shootingTarget` field with the `Target` game object and play the game.
+
+As you can see, we can see particles appear when we shoot the gun:
 
 https://github.com/maximbsb/GunClicker/assets/62714778/3e081013-f94d-4c88-88a2-00d8cc37f32d
 
-Instead of being deleted, they just get turned off and when they are needed, we turn them back on:
+Instead of being deleted, particles just get turned off and when they are needed, we turn them back on:
 
 ![image](https://github.com/maximbsb/GunClicker/assets/62714778/1d677120-bc89-4288-9503-9c9b874f57d2)
