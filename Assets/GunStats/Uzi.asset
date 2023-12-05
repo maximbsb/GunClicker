@@ -17,5 +17,5 @@ MonoBehaviour:
   scale: 850
   damage: 1000
   fireRate: 0.1
-  isUnlocked: 1
+  isUnlocked: 0
   price: 1000
