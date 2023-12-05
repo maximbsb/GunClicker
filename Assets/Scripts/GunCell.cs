@@ -10,10 +10,10 @@ public class GunCell : MonoBehaviour
     [Header("References")] 
     [SerializeField] private TMP_Text gunNameText;
     [SerializeField] private Transform gunTransform;
-    [SerializeField] private ShootingTarget shootingTarget;
     [SerializeField] private Animator animator;
     [SerializeField] private Button unlockButton;
     [SerializeField] private TMP_Text unlockButtonText;
+    [SerializeField] private ShootingTarget shootingTarget;
     
     
     

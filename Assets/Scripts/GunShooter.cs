@@ -55,13 +55,11 @@ public class GunShooter : MonoBehaviour
                 timeSinceLastShot = 0;
             }
         }
-        
         if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
         {
             timeSinceLastShot = 0;
             isHolding = false;
         }
-
     }
     
     private void Reset()
