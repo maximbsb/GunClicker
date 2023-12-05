@@ -75,7 +75,9 @@ When our bullet hits the target, `OnHit` function is called. We call `bulletImpa
 The bullet impact then has to be put back into the pool. That's why the `ReleasePoolItemWithDelay` async function is called. In that function we call `pool.Release(item)`, which puts the object back in the pool and disables it after a certain number of miliseconds.
 
 As you can see, particles appear when we shoot the gun:
+
 https://github.com/maximbsb/GunClicker/assets/62714778/3e081013-f94d-4c88-88a2-00d8cc37f32d
 
 Instead of being deleted, they just get turned off and when they are needed, we turn them back on:
+
 ![image](https://github.com/maximbsb/GunClicker/assets/62714778/1d677120-bc89-4288-9503-9c9b874f57d2)
