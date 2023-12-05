@@ -6,7 +6,7 @@ A pooling system is a system that creates objects in advance and stores them in 
 One of the downsides of this system is that it uses more memory since the objects have to be stored there. That's why we can set a certain maximum quantity of objects that can be stored in the pool so that if we create a very large quantity of them, some of them will be deleted and some will be stored in the pool. We have to compromise between memory and the CPU workload.
 
 
-## 1. Creating a pooling system
+## 1. Explanation of the pooling system code
 Unity has a special class that simplifies the management of an object pool called `ObjectPool`. This class is a stack that holds the collection of our instances that we can reuse.
 
 This is an example of a pooling system script:
@@ -73,6 +73,15 @@ The fourth parameter is `actionOnDestroy`: `OnDestroyItem`. This is called when 
 When our bullet hits the target, `OnHit` function is called. We call `bulletImpactPool.Get();` to either call `CreatePooledItem` or `OnTakeFromPool` depending on the circumstances. We save the object into a variable. Then we set a position for the bullet particle so that it gets played in the correct position;
 
 The bullet impact then has to be put back into the pool. That's why the `ReleasePoolItemWithDelay` async function is called. In that function we call `pool.Release(item)`, which puts the object back in the pool and disables it after a certain number of miliseconds.
+
+## Implementation of the pooling system
+1. Save the code explained above into a new script `PoolingSystem`
+2. Create a new object that would represent the target that we will be shooting at (where the damage particles will be spawned). Call it `Target`
+3. Attach the `PoolingSystem` onto the `Target` game object
+4. Go into the `GunCell` script, locate the `Init` function and add this line to it:
+   ```.cs
+    
+   ```
 
 As you can see, particles appear when we shoot the gun:
 
