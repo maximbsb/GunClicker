@@ -1,7 +1,7 @@
 # Pooling System
 ## In this tutorial we will learn how to optimise the instantiation of objects in our game by implementing a pooling system
 
-A pooling system is a system that creates objects in advance and stores them in a pool (usually a `List`), rather than having them created and destroyed on demand, which is a more resource intensive process. It works by creating a set amount of GameObjects before the game starts and deactivates or activates the GameObjects in the pool, recycling the GameObject instead of destroying it. This system is especially useful when lot's of the same object has to be spawned such as bullets, particle systems or enemies.
+A pooling system is a system that creates objects in advance and stores them in a pool (usually a `Stack`), rather than having them created and destroyed on demand, which is a more resource intensive process. It works by creating a set amount of GameObjects before the game starts and deactivates or activates the GameObjects in the pool, recycling the GameObject instead of destroying it. This system is especially useful when lot's of the same object has to be spawned such as bullets, particle systems or enemies.
 
 One of the downsides of this system is that it uses more memory since the objects have to be stored there. That's why we can set a certain maximum quantity of objects that can be stored in the pool so that if we create a very large quantity of them, some of them will be deleted and some will be stored in the pool. We have to compromise between memory and the CPU workload.
 
