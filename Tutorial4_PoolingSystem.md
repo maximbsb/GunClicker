@@ -3,6 +3,8 @@
 
 A pooling system is a system that creates objects in advance and stores them in a pool (usually a `List`), rather than having them created and destroyed on demand, which is a more resource intensive process. It works by creating a set amount of GameObjects before the game starts and deactivates or activates the GameObjects in the pool, recycling the GameObject instead of destroying it. This system is especially useful when lot's of the same object has to be spawned such as bullets, particle systems or enemies.
 
+One of the downsides of this system is that it uses more memory since the objects have to be stored there. That's why we can set a certain maximum quantity of objects that can be stored in the pool so that if we create a very large quantity of them, some of them will be deleted and some will be stored in the pool. We have to compromise between memory and the CPU workload.
+
 
 ## 1. Creating a pooling system
 Unity has a special class that simplifies the management of an object pool called `ObjectPool`. This class is a stack that holds the collection of our instances that we can reuse.
@@ -70,4 +72,10 @@ The fourth parameter is `actionOnDestroy`: `OnDestroyItem`. This is called when 
 
 When our bullet hits the target, `OnHit` function is called. We call `bulletImpactPool.Get();` to either call `CreatePooledItem` or `OnTakeFromPool` depending on the circumstances. We save the object into a variable. Then we set a position for the bullet particle so that it gets played in the correct position;
 
-The bullet impact then has to be put back into the pool. That's why the `ReleasePoolItemWithDelay` async function is called. After a certain number of miliseconds, we call `pool.Release(item)`, which puts the object back in the pool and disables it.
+The bullet impact then has to be put back into the pool. That's why the `ReleasePoolItemWithDelay` async function is called. In that function we call `pool.Release(item)`, which puts the object back in the pool and disables it after a certain number of miliseconds.
+
+As you can see, particles appear when we shoot the gun:
+https://github.com/maximbsb/GunClicker/assets/62714778/3e081013-f94d-4c88-88a2-00d8cc37f32d
+
+Instead of being deleted, they just get turned off and when they are needed, we turn them back on:
+![image](https://github.com/maximbsb/GunClicker/assets/62714778/1d677120-bc89-4288-9503-9c9b874f57d2)
