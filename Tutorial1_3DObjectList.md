@@ -40,6 +40,6 @@ Before we can add any 3D objects inside this list, we have to make a few changes
 9. It's good practice to have our canvas' `UI Scale Mode` in the `Canvas Scaler` set to `Scale With Screen Size` because this will expand or shrink our UI elements based on the screen size.
 10. Set reference resolution to 1920X1080 as this is the most common screen resolution.
 11. As you can see on the screenshot above, I changed the `Render Mode` in the `Canvas` component to `Screen Space - Camera`. This will ensure that our 3D object is visible when we add it to any UI Element.
-12. To make sure that we can see 3D objects in the canvas now, right-click on any image you want in the scene -> 3D Object -> Cube. Make this cube 100 times bigger and play the game. You should see that your cube is attached to an image and as you scroll it moves with it!
+12. To make sure that we can see 3D objects in the canvas now, right-click on any `image you want in the scene -> 3D Object -> Cube`. Make this cube 100 times bigger and play the game. You should see that your cube is attached to an image and as you scroll it moves with it!
 
 In the following tutorials, we will swap this cube with a gun and add other UI elements.
