@@ -2,7 +2,7 @@
 ## This tutorial shows how to make a scrollable list that contains both 2D and 3D objects. The scrollable list will store various weapons that players will be able to tap to shoot them. Each gun will give different amount of points. Along with guns, each list element will display a gun's name, it's damage (points that it gives per shot) and a target object that will be shot at.
 
 1. Create a new folder in your project by right-clicking on the `Assets` folder in the `Project` tab. In the popped-up window click Create -> Folder. Click twice slowly on the the new folder or select it and press `F2`. This will let you rename the folder. Name it `Scenes`.
-1. Create a new scene in the `Scenes` folder by right-clicking on it, then Create -> Scene. Name it `GameScene`.
+1. Create a new scene in the `Scenes` folder by right-clicking on it, then `Create -> Scene`. Name it `GameScene`.
 2. Double click on it to go to the new scene.
 
 ### Let's add a scroll view and tweak some of its settings 
@@ -28,7 +28,7 @@ Expand the newly added Scroll View and delete `Scrollbar Horizontal` and `Scroll
 
 ![ContentGameObject.png](Images%2FContentGameObject.png)
 
-8. Add a few images to the `Content` game object by right-clicking on the `Content` -> UI -> Image and change their size (You will only be able to change their height since their width is controlled by the `Content Size Fitter` component on the `Content` game object) and color.
+8. Add a few images to the `Content` game object by right-clicking on the `Content -> UI -> Image` and change their size (You will only be able to change their height since their width is controlled by the `Content Size Fitter` component on the `Content` game object) and color.
 
 You should get something like this:
 
