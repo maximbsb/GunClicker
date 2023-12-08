@@ -1,7 +1,7 @@
 # Gun Clicker
 Hi, welcome to this tutorial series!
 
-In this series of tutorials, we will create a clicker game, where you have to click on guns to earn points and spend points to unlock new guns until you've unlocked them all! Very simple game that is perfect for beginners.
+In this series of tutorials, we will create a clicker game, where you have to click on guns to earn points and spend points to unlock new guns until you've unlocked them all!
 
 By the end of this series, you will learn how to:
 * Make a scrollable list
