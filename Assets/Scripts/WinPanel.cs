@@ -24,6 +24,9 @@ public class WinPanel : MonoBehaviour
     
     private IEnumerator ShowCoroutine()
     {
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+        
         yield return new WaitForSeconds(waitTime);
         
         float t = 0;
@@ -34,7 +37,5 @@ public class WinPanel : MonoBehaviour
             yield return null;
         }
         
-        canvasGroup.interactable = true;
-        canvasGroup.blocksRaycasts = true;
     }
 }
