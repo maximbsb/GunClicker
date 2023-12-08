@@ -18,4 +18,4 @@ https://github.com/maximbsb/GunClicker/assets/62714778/2de255c0-0de4-4605-806c-2
 
 But if you decide to keep working on the game by adding gun animations, more particle effects and post processing, it may look something like this:
 
-https://github.com/maximbsb/GunClicker/assets/62714778/6917231d-2276-4fbe-a60b-b3d6dceebc93
+
