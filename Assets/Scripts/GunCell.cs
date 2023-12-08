@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,7 +15,7 @@ public class GunCell : MonoBehaviour
     [SerializeField] private Button unlockButton;
     [SerializeField] private TMP_Text unlockButtonText;
     [SerializeField] private ShootingTarget shootingTarget;
-    
+    public event Action OnUnlock;
     
     
     public void Init(GunSO gunSO, Currency currency)
@@ -55,6 +56,7 @@ public class GunCell : MonoBehaviour
                     animator.PlayInFixedTime("Unlock", 0, 0);
                     unlockButton.gameObject.SetActive(false);
                     gunTransform.GetComponentInChildren<Collider>().enabled = true;
+                    OnUnlock?.Invoke();
                 });
             }
         }
