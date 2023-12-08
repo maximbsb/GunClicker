@@ -40,7 +40,9 @@ The first solution could be to write a script that would make the font become de
 In the end, I found a setting in TextMeshPro text that I haven't noticed before called `Auto Size`. In the setting, you can set the minimum and maximum text size. If the text gets longer, the font will automatically get smaller so that it can fit without the `Rect Transform`. This solution is a lot better than the previous one because it takes the size of the text box into account and makes it fit perfectly within the set bounds.
 
 # 28/11/2023
-I learnt how to make a generic function that for my pooling system in case my pools are not of the same type. Without this generic function, I'd have to create a new function for a specific type of pool I need, which would be code repetition.
+In my game, I have `ObjectPool` class variables of different types. One is `ObjectPool<GameObject>` and another is `ObjectPool<ParticleSystem>`. In order to release an item back into a pool of its type, used 2 different functions called `ReleasePoolItemWithDelayGO` and `ReleasePoolItemWithDelayPS` depending on an item type that I am releasing. This solution works well, however, I realised that all the code in these functions was pretty much the same.
+
+To avoid code repetition, I used a generic function that can be used for both `ObjectPool<GameObject>` and `ObjectPool<ParticleSystem>` types:
 ```.cs
 private async Task ReleasePoolItemWithDelay<T>(ObjectPool<T> pool, T item, float delay) where T : class
 {
@@ -48,3 +50,4 @@ private async Task ReleasePoolItemWithDelay<T>(ObjectPool<T> pool, T item, float
     pool.Release(item);
 }
 ```
+This way my code isn't repeated and if I ever create a new pool of yet another time, I won't have to create a third function for that specific type!
